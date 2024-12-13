@@ -1,0 +1,84 @@
+############################################ APRESENTAÇÃO DO CARDÁPIO ##################################################
+print('\n ◤ -------------------------------------------------------------------- ◥')
+print(' |        Bem-vindo (a) à Sorveteria do Ricardo Gonçalves de Souza       |')
+print(' | ------------------------------ CARDÁPIO ----------------------------- |')
+print(' |        Tamanhos      |      Cupuaçu (CP)      |       Açai (AC)       |')
+print(' |           P          |        R$  9,00        |       R$ 11,00        |')
+print(' |           M          |        R$ 14,00        |       R$ 16,00        |')
+print(' |           G          |        R$ 18,00        |       R$ 20,00        |')
+print(' | --------------------------------------------------------------------- |')
+############################################## VARIAVEIS GLOBAIS #######################################################
+somaCupuacuP = 0 # Acumuladores para calcular os totais vendidos de cada sabor e tamanho
+somaCupuacuM = 0
+somaCupuacuG = 0
+somaAcaiP = 0
+somaAcaiM = 0
+somaAcaiG = 0
+###################################################### MAIN ############################################################
+while True: # um laço infinito pra repetir os pedidos até que seja encerrado manualmente.
+    sabor = input(' | Digite "E" para encerrar o programa, ou \n'
+                  ' | Digite o sabor escolhido, (CP) para Cupuaçu (AC) para Açai: ')
+    #validação do input: "Sabores"
+    if (sabor == 'CP') or (sabor == 'cp') or (sabor == 'AC') or (sabor == 'ac'):
+        tamanho = input(' | Digite o tamanho escolhido, (P) / (M) / (G): ')
+        #validação do input: "Tamanhos"
+        if (tamanho == 'P') or (tamanho == 'p') or (tamanho == 'M') or (tamanho == 'm') or (tamanho == 'G') or (tamanho == 'g'):
+            if (sabor == 'CP') or (sabor == 'cp'): # se for um cupuaçu (maiusculo ou minusculo), a aplicação verifica o tamanho:
+                if (tamanho == 'P') or (tamanho == 'p'): # é um cupuaçu P ?
+                    print(' | Seu pedido é um Cupuaçu, tamanho (P)  ----------------------- R$ 9,00 |')
+                    somaCupuacuP += 9 # o acumular incrementa direto com o valor do pedido.
+                elif (tamanho == 'M') or (tamanho == 'm'): # é um cupuaçu M?
+                    print(' | Seu pedido é um Cupuaçu, tamanho (M)  ---------------------- R$ 14,00 |')
+                    somaCupuacuM += 14
+                else: # só resta ser G, pois o programa ja verificou as entradas anteriormente.
+                    print(' | Seu pedido é um Cupuaçu, tamanho (G)  ---------------------- R$ 18,00 |')
+                    somaCupuacuG += 18
+            else:  # se não for um cupuaçu, será um açai, então será verificado o tamanho:
+                if (tamanho == 'P') or (tamanho == 'p'):
+                    print(' | Seu pedido é um Açai, tamanho (P)  ------------------------- R$ 11,00 |')
+                    somaAcaiP += 11
+                elif (tamanho == 'M') or (tamanho == 'm'):
+                    print(' | Seu pedido é um Açai, tamanho (M)  ------------------------- R$ 16,00 |')
+                    somaAcaiM += 16
+                else:
+                    print(' | Seu pedido é um Açai, tamanho (G)  ------------------------- R$ 20,00 |')
+                    somaAcaiG += 20
+        else:
+            print(' | --------------------------------------------------------------------- |')
+            print(' |                     Tamanho inválido. Tente novamente                 |')
+            print(' | --------------------------------------------------------------------- |')
+            continue
+    elif (sabor == 'E') or (sabor == 'e'): # a quebra do laço para encerrar o pedido e emitir o fechamento.
+        print(' | --------------------------------------------------------------------- |')
+        print(' |                          Encerrando os pedidos                        |')
+        print(' | --------------------------------------------------------------------- |')
+        break
+    else:
+        print(' | --------------------------------------------------------------------- |')
+        print(' |                    Sabor inválido. Tente novamente                    |')
+        print(' | --------------------------------------------------------------------- |')
+        continue
+    print(' | --------------------------------------------------------------------- |')
+    sabor = input(' | Deseja fazer outro pedido? (S para sim / N para não): ')
+    print(' | --------------------------------------------------------------------- |')
+    if (sabor == 'S') or (sabor == 's'):
+        continue
+    else:
+        if (sabor == 'N') or (sabor == 'n'):
+            break
+        else: # implementei uma dupla verificação pro caso do usuario digitar algo diferente de S ou N por engano.
+            print(' | --------------------------------------------------------------------- |')
+            sabor = input(' | Deseja fazer outro pedido? (S para sim / N para não): ')
+            print(' | --------------------------------------------------------------------- |')
+            if (sabor == 'S') or (sabor == 's'):
+                continue
+            if (sabor == 'N') or (sabor == 'n'):
+                break # Aqui o laço se encerra e seguirá para soma do total de pedidos e impressão na tela
+
+# Poderia fazer a concatenação do total ja dentro do .format, mas evitei, na questão visual, ficou muito extenso.
+total = (somaCupuacuP+somaCupuacuM+somaCupuacuG+somaAcaiP+somaAcaiM+somaAcaiG)
+
+############################################### SAIDA DO PROGRAMA ######################################################
+print(' | --------------------------------------------------------------------- |')
+print(' | O total do pedido foi -------------------------------------- R$ {:.2f}' .format(total))
+print(' ◣ --------------------------------------------------------------------- ◢')
